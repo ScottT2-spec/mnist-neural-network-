@@ -20,11 +20,11 @@ Final accuracy: **95.75%** on test data.
 
 ### Predictions on test digits
 
-![Predictions](IMG_2228.jpeg)
+![Predictions](images/IMG_2228.jpeg)
 
 ### Confusion Matrix
 
-![Confusion Matrix](IMG_2227.jpeg)
+![Confusion Matrix](images/IMG_2227.jpeg)
 
 ## What I learned
 
