@@ -16,9 +16,15 @@ The network learns through backpropagation — it makes a prediction, checks how
 
 ## Results
 
-- Final accuracy: **95.75%** on test data
-- Strongest digits: 0 and 1 (easiest to recognize)
-- Weakest digits: 5 and 8 (most commonly confused)
+Final accuracy: **95.75%** on test data.
+
+### Predictions on test digits
+
+![Predictions](IMG_2228.jpeg)
+
+### Confusion Matrix
+
+![Confusion Matrix](IMG_2227.jpeg)
 
 ## What I learned
 
@@ -30,7 +36,7 @@ The network learns through backpropagation — it makes a prediction, checks how
 
 ## Run it yourself
 
-Open `neural_net.ipynb` in Google Colab or Jupyter Notebook and run all cells.
+Open `neural_net_complete.py` in Google Colab or Jupyter Notebook and run all cells.
 
 ## Built with
 
