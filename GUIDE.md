@@ -1,5 +1,5 @@
 # 🧠 Build Your Own Neural Network from Scratch
-### A Complete Guide for Scott — No Libraries, Just Python + NumPy
+### A Complete Guide — No Libraries, Just Python + NumPy
 
 ---
 
@@ -375,4 +375,4 @@ If you can do Exercise 6 from a blank file without looking at any reference, you
 
 ---
 
-*Guide by Alpha 🐺 for Scott | Feb 2026*
+*Feb 2026*
