@@ -1,7 +1,5 @@
-# 🧠 Build Your Own Neural Network from Scratch
+# Build Your Own Neural Network from Scratch
 ### A Complete Guide — No Libraries, Just Python + NumPy
-
----
 
 ## PART 1: Python Topics You MUST Know
 
@@ -164,7 +162,7 @@ for ax in axes.flat:
 plt.show()
 ```
 
----
+
 
 ## PART 2: The Math You Need (Don't Panic)
 
@@ -200,7 +198,7 @@ Imagine you're blindfolded on a hill, trying to reach the bottom:
 
 `new_weight = old_weight - learning_rate × gradient`
 
----
+
 
 ## PART 3: Build a Neural Network Step by Step
 
@@ -335,7 +333,7 @@ for epoch in range(20):
     print(f"Epoch {epoch+1}: {accuracy:.2f}%")
 ```
 
----
+
 
 ## PART 4: Cheat Sheet — The Complete Flow
 
@@ -373,6 +371,6 @@ After studying this guide, try these WITHOUT looking at the code:
 
 If you can do Exercise 6 from a blank file without looking at any reference, you're ready for MBZUAI. 🐺
 
----
+
 
 *Feb 2026*
