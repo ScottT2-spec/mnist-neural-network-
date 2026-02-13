@@ -35,7 +35,7 @@ The confusion matrix shows where the network struggles. It's decent at most digi
 
 **Run it:** Open `neural_net_complete.py` in Google Colab or Jupyter Notebook. Takes about 2 minutes to train.
 
-## Part 2: Kaggle Competition — Rank 33, 99.685% accuracy
+## Part 2: Kaggle Competition —  99.685% accuracy
 
 After understanding how neural networks work from scratch, I entered the [Kaggle Digit Recognizer](https://www.kaggle.com/competitions/digit-recognizer) competition and scored **99.685% accuracy**.
 
