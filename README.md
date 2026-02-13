@@ -37,7 +37,7 @@ The confusion matrix shows where the network struggles. It's decent at most digi
 
 ## Part 2: Kaggle Competition — Rank 33, 99.685% accuracy
 
-After understanding how neural networks work from scratch, I entered the [Kaggle Digit Recognizer](https://www.kaggle.com/competitions/digit-recognizer) competition and ranked **33rd** out of thousands with **99.685% accuracy**.
+After understanding how neural networks work from scratch, I entered the [Kaggle Digit Recognizer](https://www.kaggle.com/competitions/digit-recognizer) competition and scored **99.685% accuracy**.
 
 **Techniques used:**
 - Ensemble of 5 CNN architectures (ResNet, Deep CNN, Wide CNN, Inception-style, SE-Net)
