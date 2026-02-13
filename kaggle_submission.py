@@ -1,18 +1,10 @@
 """
-Kaggle Digit Recognizer — Top 10 Solution
-Target: 99.7%+ accuracy (currently at 99.19%, rank 52)
+Kaggle Digit Recognizer — 99.685% accuracy
 
-Key techniques:
-1. Deep CNN with residual connections
-2. Heavy data augmentation (elastic deform, rotation, shift)
-3. Test-Time Augmentation (TTA) — 15x predictions averaged
-4. Ensemble of 5 models with different architectures
-5. Pseudo-labeling on high-confidence test predictions
-6. Cosine annealing learning rate
-7. Label smoothing
-8. MixUp augmentation
+Ensemble of 5 CNNs (ResNet, Deep CNN, Wide CNN, Inception-style, SE-Net)
+with data augmentation, test-time augmentation, and pseudo-labeling.
 
-Run on Kaggle with GPU T4 x2. Runtime: ~2-3 hours.
+Run on Kaggle with GPU T4 x2. Takes about 2-3 hours.
 """
 
 import numpy as np
@@ -41,13 +33,13 @@ y_train_smooth = y_train_oh * (1 - smooth) + smooth / num_classes
 
 print(f"Train: {X_train.shape}, Test: {X_test.shape}")
 
-# ============================================
+#
 # DATA AUGMENTATION
-# ============================================
+#
 from scipy.ndimage import map_coordinates, gaussian_filter
 
 def elastic_deform(image, alpha=36, sigma=6):
-    """Elastic deformation — key technique for MNIST"""
+    """Elastic deformation — warps the image slightly to create variations"""
     shape = image.shape[:2]
     dx = gaussian_filter((np.random.rand(*shape) * 2 - 1), sigma) * alpha
     dy = gaussian_filter((np.random.rand(*shape) * 2 - 1), sigma) * alpha
@@ -65,9 +57,9 @@ datagen = ImageDataGenerator(
     fill_mode='nearest'
 )
 
-# ============================================
+#
 # MIXUP AUGMENTATION
-# ============================================
+#
 def mixup_data(X, y, alpha=0.2):
     lam = np.random.beta(alpha, alpha, X.shape[0])
     lam = np.maximum(lam, 1 - lam)
@@ -78,9 +70,9 @@ def mixup_data(X, y, alpha=0.2):
     y_mixed = lam_y * y + (1 - lam_y) * y[indices]
     return X_mixed, y_mixed
 
-# ============================================
+#
 # MODEL ARCHITECTURES
-# ============================================
+#
 
 def residual_block(x, filters, strides=1):
     shortcut = x
@@ -123,7 +115,7 @@ def build_resnet(input_shape=(28, 28, 1), num_classes=10, name='resnet'):
     return keras.Model(inputs, outputs, name=name)
 
 def build_deep_cnn(input_shape=(28, 28, 1), num_classes=10, name='deep_cnn'):
-    """Deep CNN with aggressive augmentation-friendly architecture"""
+    """Deep CNN — more layers, more filters"""
     inputs = layers.Input(shape=input_shape)
     
     # Block 1
@@ -172,7 +164,7 @@ def build_deep_cnn(input_shape=(28, 28, 1), num_classes=10, name='deep_cnn'):
     return keras.Model(inputs, outputs, name=name)
 
 def build_wide_cnn(input_shape=(28, 28, 1), num_classes=10, name='wide_cnn'):
-    """Wide CNN — fewer layers but more filters"""
+    """Wide CNN — fewer layers, wider filters"""
     inputs = layers.Input(shape=input_shape)
     
     x = layers.Conv2D(64, 3, padding='same', kernel_initializer='he_normal')(inputs)
@@ -210,7 +202,7 @@ def build_wide_cnn(input_shape=(28, 28, 1), num_classes=10, name='wide_cnn'):
     return keras.Model(inputs, outputs, name=name)
 
 def build_inception_style(input_shape=(28, 28, 1), num_classes=10, name='inception'):
-    """Inception-style with multi-scale feature extraction"""
+    """Inception-style — parallel convolutions at different kernel sizes"""
     inputs = layers.Input(shape=input_shape)
     
     def inception_block(x, f1, f3, f5):
@@ -297,15 +289,15 @@ def build_se_net(input_shape=(28, 28, 1), num_classes=10, name='se_net'):
     
     return keras.Model(inputs, outputs, name=name)
 
-# ============================================
+#
 # TRAINING WITH COSINE ANNEALING
-# ============================================
+#
 def cosine_schedule(epoch, total_epochs=60, lr_max=1e-3, lr_min=1e-6):
     return lr_min + 0.5 * (lr_max - lr_min) * (1 + np.cos(np.pi * epoch / total_epochs))
 
-# ============================================
+#
 # TRAIN ALL 5 MODELS
-# ============================================
+#
 EPOCHS = 60
 BATCH_SIZE = 128
 
@@ -363,9 +355,9 @@ for i, builder in enumerate(builders):
     
     all_models.append(model)
 
-# ============================================
+#
 # PSEUDO-LABELING (1 round)
-# ============================================
+#
 print("\n" + "="*60)
 print("PSEUDO-LABELING ROUND")
 print("="*60)
@@ -413,9 +405,9 @@ for i, model in enumerate(all_models):
         verbose=1
     )
 
-# ============================================
+#
 # TEST-TIME AUGMENTATION (TTA) — 15 passes
-# ============================================
+#
 print("\n" + "="*60)
 print("TEST-TIME AUGMENTATION (15 passes)")
 print("="*60)
@@ -449,9 +441,9 @@ for model_idx, model in enumerate(all_models):
 
 final_preds /= len(all_models)
 
-# ============================================
+#
 # GENERATE SUBMISSION
-# ============================================
+#
 predictions = np.argmax(final_preds, axis=1)
 
 # Confidence stats
