@@ -51,6 +51,10 @@ After understanding how neural networks work from scratch, I entered the [Kaggle
 
 **Kaggle profile:** [kaggle.com/scottantwi](https://www.kaggle.com/scottantwi)
 
+**Leaderboard proof** (in case the rolling leaderboard resets):
+
+![Kaggle Rank Proof](kaggle-rank-proof.jpg)
+
 ## The Guide
 
 I wrote a complete guide (`GUIDE.md`) that walks through everything step by step — NumPy basics, the math behind neural networks, and how to build one from scratch.
