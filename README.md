@@ -53,7 +53,7 @@ After understanding how neural networks work from scratch, I entered the [Kaggle
 
 **Leaderboard proof** (in case the rolling leaderboard resets):
 
-![Kaggle Rank Proof](kaggle-rank-proof.jpg)
+![Kaggle Rank Proof](images/IMG_2804.jpeg)
 
 ## The Guide
 
