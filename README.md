@@ -54,7 +54,7 @@ After understanding how neural networks work from scratch, I entered the [Kaggle
 **Leaderboard proof** (in case the rolling leaderboard resets):
 
 ![Kaggle Rank Proof](images/IMG_2804.jpeg)
-
+![](images/IMG_2806.jpeg)
 ## The Guide
 
 I wrote a complete guide (`GUIDE.md`) that walks through everything step by step — NumPy basics, the math behind neural networks, and how to build one from scratch.
